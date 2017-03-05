@@ -55,6 +55,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\BoolToInvertedBoolConverter .cs" />
+    <Compile Include="Converters\BoolToStringConverter.cs" />
+    <Compile Include="Converters\ListViewWidthConverter.cs" />
+    <Compile Include="Converters\NumberToStringConverter.cs" />
+    <Compile Include="Converters\StudentNameSurnameConverter.cs" />
     <Compile Include="Properties\FileNamesResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
