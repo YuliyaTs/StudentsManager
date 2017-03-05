@@ -1,0 +1,226 @@
+﻿<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:rib="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    xmlns:shell="http://schemas.microsoft.com/winfx/2006/xaml/presentation/shell">
+
+    <rib:RibbonTab x:Key="RibbonTabHome" 
+                   Header="Home"
+                   KeyTip="H">
+    </rib:RibbonTab>
+
+    <rib:RibbonGroup x:Key="RibbonGroupRefresh" 
+                     Header="Refresh">
+        <rib:RibbonGroup.GroupSizeDefinitions>
+            <rib:RibbonGroupSizeDefinitionBaseCollection>
+                <rib:RibbonGroupSizeDefinition>
+                    <rib:RibbonControlSizeDefinition ImageSize="Large" IsLabelVisible="True"/>
+                </rib:RibbonGroupSizeDefinition>
+            </rib:RibbonGroupSizeDefinitionBaseCollection>
+        </rib:RibbonGroup.GroupSizeDefinitions>
+
+        <rib:RibbonButton SmallImageSource="pack://application:,,,/StudentsManager;component/Images/Refresh_16.png"
+                          LargeImageSource="pack://application:,,,/StudentsManager;component/Images/Refresh_32.png"
+                          Label="Refresh"
+                          KeyTip="R"
+                          Command="{Binding  Path=SelectedViewModel.RefreshCommand}"
+                          IsEnabled="{Binding IsButtonEnabled}"/>
+    </rib:RibbonGroup>
+
+    <rib:RibbonGroup x:Key="RibbonGroupSave" 
+                     Header="Save">
+        <rib:RibbonGroup.GroupSizeDefinitions>
+            <rib:RibbonGroupSizeDefinitionBaseCollection>
+                <rib:RibbonGroupSizeDefinition>
+                    <rib:RibbonControlSizeDefinition ImageSize="Large" IsLabelVisible="True"/>
+                </rib:RibbonGroupSizeDefinition>
+            </rib:RibbonGroupSizeDefinitionBaseCollection>
+        </rib:RibbonGroup.GroupSizeDefinitions>
+
+        <rib:RibbonButton SmallImageSource="pack://application:,,,/StudentsManager;component/Images/Save_16.png"
+                          LargeImageSource="pack://application:,,,/StudentsManager;component/Images/Save_32.png"
+                          Label="Save"
+                          KeyTip="R"
+                          Command="{Binding Path=SelectedViewModel.SaveCommand}"/>
+    </rib:RibbonGroup>
+    
+    <rib:RibbonGroup x:Key="RibbonGroupEdit" 
+                     Header="Edit">
+        <rib:RibbonGroup.GroupSizeDefinitions>
+            <rib:RibbonGroupSizeDefinitionBaseCollection>
+                <rib:RibbonGroupSizeDefinition>
+                    <rib:RibbonControlSizeDefinition ImageSize="Large" IsLabelVisible="True"/>
+                </rib:RibbonGroupSizeDefinition>
+            </rib:RibbonGroupSizeDefinitionBaseCollection>
+        </rib:RibbonGroup.GroupSizeDefinitions>
+
+
+        <rib:RibbonButton SmallImageSource="pack://application:,,,/StudentsManager;component/Images/Add__16.png"
+                          LargeImageSource="pack://application:,,,/StudentsManager;component/Images/Add _32.png"
+                          Label="Add"
+                          KeyTip="R"
+                          Command="{Binding Path=SelectedViewModel.AddCommand}"
+                          IsEnabled="{Binding IsActionButtonEnabled}"/>
+
+        <rib:RibbonButton SmallImageSource="pack://application:,,,/StudentsManager;component/Images/Edit_16.png"
+                          LargeImageSource="pack://application:,,,/StudentsManager;component/Images/Edit_32.png"
+                          Label="Edit"
+                          KeyTip="R"
+                          Command="{Binding Path=SelectedViewModel.EditCommand}"
+                          IsEnabled="{Binding IsActionButtonEnabled}"/>
+
+        <rib:RibbonButton SmallImageSource="pack://application:,,,/StudentsManager;component/Images/Delete_16.png"
+                          LargeImageSource="pack://application:,,,/StudentsManager;component/Images/Delete_32.png"
+                          Label="Delete"
+                          KeyTip="R"
+                          Command="{Binding Path=SelectedViewModel.DeleteCommand}"
+                          IsEnabled="{Binding IsActionButtonEnabled}"/>
+    </rib:RibbonGroup>
+
+    <rib:RibbonGroup x:Key="RibbonGroupImportExport" 
+                     Header="Import/Export">
+        <rib:RibbonGroup.GroupSizeDefinitions>
+            <rib:RibbonGroupSizeDefinitionBaseCollection>
+                <rib:RibbonGroupSizeDefinition>
+                    <rib:RibbonControlSizeDefinition ImageSize="Large" IsLabelVisible="True"/>
+                </rib:RibbonGroupSizeDefinition>
+            </rib:RibbonGroupSizeDefinitionBaseCollection>
+        </rib:RibbonGroup.GroupSizeDefinitions>
+
+
+        <rib:RibbonButton SmallImageSource="pack://application:,,,/StudentsManager;component/Images/Import_16.png"
+                          LargeImageSource="pack://application:,,,/StudentsManager;component/Images/Import_32.png"
+                          Label="Import"
+                          KeyTip="R"
+                          Command="{Binding Path=SelectedViewModel.ImportCommand}"
+                          IsEnabled="{Binding IsActionButtonEnabled}"/>
+
+        <rib:RibbonButton SmallImageSource="pack://application:,,,/StudentsManager;component/Images/Export_16.png"
+                          LargeImageSource="pack://application:,,,/StudentsManager;component/Images/Export_32.png"
+                          Label="Export"
+                          KeyTip="R"
+                          Command="{Binding Path=SelectedViewModel.ExportCommand}"
+                          IsEnabled="{Binding IsActionButtonEnabled}"/>
+    </rib:RibbonGroup>
+
+    <rib:RibbonGroup x:Key="RibbonGroupSwitchView" 
+                     Header="Switch View"
+                     Visibility="{Binding SwitchViewRibbonGroupVisibility}">
+        <rib:RibbonGroup.GroupSizeDefinitions>
+            <rib:RibbonGroupSizeDefinitionBaseCollection>
+                <rib:RibbonGroupSizeDefinition>
+                    <rib:RibbonControlSizeDefinition ImageSize="Large" IsLabelVisible="True"/>
+                </rib:RibbonGroupSizeDefinition>
+            </rib:RibbonGroupSizeDefinitionBaseCollection>
+        </rib:RibbonGroup.GroupSizeDefinitions>
+
+        <rib:RibbonButton SmallImageSource="pack://application:,,,/StudentsManager;component/Images/Switch_16.png"
+                          LargeImageSource="pack://application:,,,/StudentsManager;component/Images/Switch_32.png"
+                          Label="Switch View"
+                          KeyTip="R"
+                          Margin="5,0,0,0"
+                          Command="{Binding Path=SwitchStudentViewCommand}"/>
+
+    </rib:RibbonGroup>
+
+
+    <!--RibbonToggleButton-->
+
+    <RadialGradientBrush x:Key="RadialGradientBrushY">
+        <GradientStop Offset="0.6" Color="#C6D0D6" />
+        <GradientStop Offset="1" Color="#D7DDE2" />
+    </RadialGradientBrush>
+
+    <RadialGradientBrush x:Key="RadialGradientBrushZ">
+        <GradientStop Offset="0" Color="#E2E6EA" />
+        <GradientStop Offset="1" Color="White" />
+    </RadialGradientBrush>
+
+
+    <RadialGradientBrush x:Key="RadialGradientBrushX">
+        <GradientStop Offset="0" 
+                      Color="#709BBC" />
+        <GradientStop Offset="1" 
+                      Color="#345360" />
+    </RadialGradientBrush>
+
+    <system:Int32 x:Key="DurationA">900</system:Int32>
+    <system:Int32 x:Key="DurationB">20000</system:Int32>
+    <system:Int32 x:Key="DurationC">0</system:Int32>
+
+            <Style  x:Key="ToggleButtonTemplate" 
+            TargetType="{x:Type rib:RibbonToggleButton}">
+        <Setter Property="ClickMode" Value="Press" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="FocusManager.IsFocusScope" Value="False" />
+        <Setter Property="VerticalAlignment" Value="Bottom" />
+        <Setter Property="ToolTipService.InitialShowDelay" Value="{StaticResource DurationA}" />
+        <Setter Property="ToolTipService.ShowDuration" Value="{StaticResource DurationB}" />
+        <Setter Property="ToolTipService.BetweenShowDelay" Value="{StaticResource DurationC}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type rib:RibbonToggleButton}">
+                    <Grid SnapsToDevicePixels="True" 
+                          Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Height}" 
+                          Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Width}">
+                        <Border Name="GreyBorder"
+                                BorderThickness="0" 
+                                CornerRadius="100,100,100,100" 
+                                HorizontalAlignment="Stretch" 
+                                VerticalAlignment="Stretch" >
+                            <Border.Background>
+                                <RadialGradientBrush >
+                                    <GradientStop x:Name="GreyBorderStop1" Offset="1" Color="#A1A9AD" />
+                                    <GradientStop x:Name="GreyBorderStop2" Offset="0.7" Color= "#C6D0D6"/>
+                                    <GradientStop x:Name="GreyBorderStop3" Offset="0.4" Color="White" />
+                                    <GradientStop x:Name="GreyBorderStop4" Offset="0.2" Color="#E2E6EA" />
+                                </RadialGradientBrush>
+                            </Border.Background>
+                            <Border.BorderBrush>
+                                <RadialGradientBrush >
+                                    <GradientStop x:Name="GreyBorderStop5" Offset="0.6" Color="#C6D0D6" />
+                                    <GradientStop x:Name="GreyBorderStop6" Offset="1" Color="#A1A9AD" />
+                                </RadialGradientBrush>
+                            </Border.BorderBrush>
+                        </Border>
+
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="UIElement.IsMouseOver" Value="True" />
+                                <Condition Property="ToggleButton.IsChecked" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="GreyBorderStop2" 
+                                                         Storyboard.TargetProperty="Offset"
+                                                         From="0.7"
+                                                         To="1"
+                                                         By="0.05"
+                                                         Duration="0:0:1" 
+                                                         BeginTime="0:0:0"
+                                                         AutoReverse="True">
+                                            <DoubleAnimation.EasingFunction>
+                                                <CircleEase EasingMode="EaseInOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>                                     
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.EnterActions>
+                        </MultiTrigger>
+                        <DataTrigger Value="True" Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}">
+                            <Setter TargetName="GreyBorder" Value="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" Property="Border.BorderBrush" />
+                            <Setter TargetName="GreyBorder" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Property="Border.Background" />
+                            <Setter TargetName="GreyBorder" Property="Border.CornerRadius" Value="0" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+</ResourceDictionary>
