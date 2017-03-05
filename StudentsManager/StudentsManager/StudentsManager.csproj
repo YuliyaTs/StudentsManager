@@ -35,6 +35,30 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Eagle.Common.Infrastructure">
+      <HintPath>..\..\..\StudentsManager\StudentsManager\Libraries\Eagle.Common.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Eagle.Common.ThemePack">
+      <HintPath>..\..\..\StudentsManager\StudentsManager\Libraries\Eagle.Common.ThemePack.dll</HintPath>
+    </Reference>
+    <Reference Include="Eagle.Common.Utils">
+      <HintPath>..\..\..\StudentsManager\StudentsManager\Libraries\Eagle.Common.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="Eagle.Core">
+      <HintPath>..\..\..\StudentsManager\StudentsManager\Libraries\Eagle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Eagle.Windows">
+      <HintPath>..\..\..\StudentsManager\StudentsManager\Libraries\Eagle.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="LocalizationInterface">
+      <HintPath>..\..\..\StudentsManager\StudentsManager\Libraries\LocalizationInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Windows.Shell">
+      <HintPath>..\..\..\StudentsManager\StudentsManager\Libraries\Microsoft.Windows.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="RibbonControlsLibrary">
+      <HintPath>..\..\..\StudentsManager\StudentsManager\Libraries\RibbonControlsLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -49,6 +73,18 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.Controls.v5.3">
+      <HintPath>..\..\..\StudentsManager\StudentsManager\Libraries\Xceed.Wpf.Controls.v5.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid.ThemePack.1.v5.3">
+      <HintPath>..\..\..\StudentsManager\StudentsManager\Libraries\Xceed.Wpf.DataGrid.ThemePack.1.v5.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid.v5.3">
+      <HintPath>..\..\..\StudentsManager\StudentsManager\Libraries\Xceed.Wpf.DataGrid.v5.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid.Views3D.v5.3">
+      <HintPath>..\..\..\StudentsManager\StudentsManager\Libraries\Xceed.Wpf.DataGrid.Views3D.v5.3.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -60,6 +96,7 @@
     <Compile Include="Converters\ListViewWidthConverter.cs" />
     <Compile Include="Converters\NumberToStringConverter.cs" />
     <Compile Include="Converters\StudentNameSurnameConverter.cs" />
+    <Compile Include="Helper\TreeViewHelper.cs" />
     <Compile Include="Properties\FileNamesResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -85,10 +122,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="ViewModel\AppViewModel.cs" />
+    <Compile Include="ViewModel\BaseViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Faculty.cs" />
@@ -114,6 +149,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Resources\SMResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="View\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Libraries\Xceed.Wpf.Controls.v5.3.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
