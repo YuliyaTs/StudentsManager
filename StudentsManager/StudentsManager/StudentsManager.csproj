@@ -91,10 +91,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-<<<<<<< Updated upstream
-=======
+    <Compile Include="Converters\BoolToInvertedBoolConverter .cs" />
+    <Compile Include="Converters\BoolToStringConverter.cs" />
+    <Compile Include="Converters\ListViewWidthConverter.cs" />
+    <Compile Include="Converters\NumberToStringConverter.cs" />
+    <Compile Include="Converters\StudentNameSurnameConverter.cs" />
     <Compile Include="Helper\TreeViewHelper.cs" />
->>>>>>> Stashed changes
     <Compile Include="Properties\FileNamesResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -104,7 +106,6 @@
     <Compile Include="Repositories\XmlFacultiesRepository.cs" />
     <Compile Include="Repositories\XmlStudentsRepository.cs" />
     <Compile Include="Repositories\XmlUniversitiesRepository.cs" />
-<<<<<<< Updated upstream
     <Compile Include="Services\Local\FacultiesEditingService.cs" />
     <Compile Include="Services\Local\IEditingService.cs" />
     <Compile Include="Services\Local\StudentsEditingService.cs" />
@@ -117,8 +118,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-=======
->>>>>>> Stashed changes
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
