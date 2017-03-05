@@ -1,0 +1,255 @@
+﻿<base:BaseView x:Class="StudentsManager.View.Student.StudentsSwitchView"
+               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+               xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+               xmlns:model="clr-namespace:StudentsManager.Model"
+               xmlns:regularExpressions="clr-namespace:System.Text.RegularExpressions;assembly=System"
+               xmlns:view="clr-namespace:StudentsManager.View"
+               xmlns:base="clr-namespace:StudentsManager.View.Base"
+               xmlns:converters="clr-namespace:StudentsManager.Converters"
+               xmlns:helper="clr-namespace:StudentsManager.Helper"
+               mc:Ignorable="d" 
+               d:DesignHeight="300" 
+               d:DesignWidth="300">
+    <base:BaseView.Resources>
+        
+        <converters:StudentNameSurnameConverter x:Key="StudentNameSurnameConverter"/>
+
+        <LinearGradientBrush  x:Key="HighlightedItemBrush" 
+                              StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Offset="0" Color="#FFFEFBF4" />
+            <GradientStop Offset="0.19" Color="#FFFDE7CE" />
+            <GradientStop Offset="0.39" Color="#FFFDDEB8" />
+            <GradientStop Offset="0.39" Color="#FFFFCE6B" />
+            <GradientStop Offset="0.79" Color="#FFFFDE9A" />
+            <GradientStop Offset="1" Color="#FFFFEBAA" />
+        </LinearGradientBrush>
+
+        <LinearGradientBrush  x:Key="SelectedItemBrush"
+                              StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Offset="0" Color="#F0C89E" />
+            <GradientStop Offset="0.19" Color="#FCC996" />
+            <GradientStop Offset="0.39" Color="#F8B46F" />
+            <GradientStop Offset="0.39" Color="#F79D3B" />
+            <GradientStop Offset="0.79" Color="#FAB54B" />
+            <GradientStop Offset="1" Color="#FED668" />
+        </LinearGradientBrush>
+
+        <Style TargetType="{x:Type ContextMenu}">
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="MenuItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type MenuItem}">
+                                    <Border x:Name="Border"
+                                            BorderThickness="1"
+                                            CornerRadius="3">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" SharedSizeGroup="Icon" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" SharedSizeGroup="Shortcut" />
+                                                <ColumnDefinition Width="20" />
+                                            </Grid.ColumnDefinitions>
+                                            <ContentPresenter Name="Icon" 
+                                                  Margin="6,0" 
+                                                  VerticalAlignment="Center" 
+                                                  ContentSource="Icon" />
+                                            <ContentPresenter x:Name="HeaderHost" 
+                                                  Grid.Column="1" 
+                                                  ContentSource="Header"
+                                                  Margin="0,4,0,-2"
+                                                  RecognizesAccessKey="True" />
+                                            <TextBlock x:Name="InputGestureText" 
+                                           Grid.Column="2" 
+                                           Text="{TemplateBinding InputGestureText}" 
+                                           Margin="5,5,0,5" 
+                                           DockPanel.Dock="Right" />
+                                        </Grid>
+                                    </Border>
+
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsHighlighted" Value="true">
+                                            <Setter TargetName="Border" Property="Background" Value="{StaticResource HighlightedItemBrush}"/>
+                                            <Setter TargetName="Border" Property="BorderBrush" Value="#FFFFCE6B"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter TargetName="Border" Property="Background" Value="{StaticResource SelectedItemBrush}"/>
+                                            <Setter TargetName="Border" Property="BorderBrush" Value="#F79D3B"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--InfoTextBlock Template-->
+
+        <ControlTemplate x:Key="InfoTextBox" 
+                         TargetType="Label">
+
+            <TextBlock x:Name="InfoBlock" 
+                       Text="{TemplateBinding Content}"
+                       Background="Transparent">
+                <TextBlock.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger  Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TreeViewItem}}, Path=IsSelected}" Value="True">
+                                <Setter Property="TextBlock.Foreground" Value="Black"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </ControlTemplate>
+
+        <!--TreeViewItem Border Template-->
+
+        <Style x:Key="TreeViewItemBorder"
+               TargetType="{x:Type Border}">
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="3"/>
+            <Style.Triggers>
+                <Trigger  Property="Border.IsMouseOver" Value="True">
+                    <Setter Property="Border.BorderBrush" Value="#FFFFCE6B"/>
+                    <Setter Property="Border.Background" Value="{StaticResource SelectedItemBrush}"/>
+                </Trigger>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TreeViewItem}}, Path=IsSelected}" Value="True">
+                    <Setter Property="Border.BorderBrush" Value="#F79D3B"/>
+                    <Setter Property="Border.Background" Value="Transparent"/>
+                </DataTrigger>
+            </Style.Triggers>
+
+        </Style>
+
+        <!--StudentsTemplate-->
+
+        <DataTemplate x:Key="StudentTemplate" 
+                      DataType="{x:Type model:Student}">
+
+            <Border Style="{StaticResource TreeViewItemBorder}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Margin="0,0,5,0" 
+                           Source="pack://application:,,,/StudentsManager;component/Images/Student_16.png"/>
+                    <Label x:Name="StudentInfoBlock"
+                           Tag="{Binding DataContext, RelativeSource={RelativeSource AncestorType=TreeView}}"
+                           Margin="0,1"
+                           Template="{StaticResource InfoTextBox}">
+
+                        <Label.ContextMenu>
+
+                            <ContextMenu DataContext="{Binding PlacementTarget.Tag, RelativeSource={RelativeSource Self}}">
+                             
+                                <MenuItem Header="Add"
+                                          Command="{Binding Path=AddCommand}">
+                                    <MenuItem.Icon>
+                                        <Image Source="pack://application:,,,/StudentsManager;component/Images/Add__16.png"/>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+
+                                <MenuItem Header="Edit"
+                                          Command="{Binding Path=EditCommand}">
+                                    <MenuItem.Icon>
+                                        <Image Source="pack://application:,,,/StudentsManager;component/Images/Edit_16.png"/>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+
+                                <MenuItem Header="Delete"
+                                          Command="{Binding Path=DeleteCommand}">
+                                    <MenuItem.Icon>
+                                        <Image Source="pack://application:,,,/StudentsManager;component/Images/Delete_16.png"/>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                              
+                            </ContextMenu>
+
+                        </Label.ContextMenu>
+
+                        <Label.Content>
+                            <MultiBinding Converter="{StaticResource StudentNameSurnameConverter}">
+                                <Binding Path="Name"/>
+                                <Binding Path="Surname"/>
+                            </MultiBinding>
+                        </Label.Content>
+
+                      </Label>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+
+        <!--FacultiesTemplate-->
+
+        <HierarchicalDataTemplate x:Key="FacultyTemplate" 
+                                  DataType="{x:Type model:Faculty}"
+                                  ItemsSource="{Binding Path=Students}"
+                                  ItemTemplate="{StaticResource StudentTemplate}">
+
+            <Border Style="{StaticResource TreeViewItemBorder}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Margin="0,0,5,0" 
+                       Source="pack://application:,,,/StudentsManager;component/Images/Faculty_16.png"/>
+
+                    <Label x:Name="FacultyInfoBlock"
+                           Template="{StaticResource InfoTextBox}"
+                           Content="{Binding Caption}"
+                           Margin="0,2"/>
+                </StackPanel>
+            </Border>
+        </HierarchicalDataTemplate>
+
+    </base:BaseView.Resources>
+
+    <!--End Of Resources-->
+
+    <Grid>
+        <TreeView x:Name="StudentsTreeView" 
+                  ItemsSource="{Binding Universities}"
+                  SelectedItemChanged="StudentsTreeView_OnSelectedItemChanged">
+            <TreeView.ItemContainerStyle>
+                <Style TargetType="{x:Type TreeViewItem}">
+                    <Setter Property="IsExpanded" Value="True" />
+                    <Setter Property="IsSelected" Value="{Binding ElementName=StudentInfoBlock, Path=IsSelectionActive}"/>
+                </Style>
+            </TreeView.ItemContainerStyle>
+
+            <!--UniversitiesTemplate-->
+
+            <TreeView.ItemTemplate >
+                <HierarchicalDataTemplate DataType="{x:Type model:University}"
+                                          ItemsSource="{Binding Path=Faculties}"
+                                          ItemTemplate="{StaticResource FacultyTemplate}">
+
+                    <Border Style="{StaticResource TreeViewItemBorder}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Margin="0,0,5,0" 
+                               Source="pack://application:,,,/StudentsManager;component/Images/University_16.png"/>
+
+                            <Label x:Name="UniversityInfoBlock"
+                               Template="{StaticResource InfoTextBox}"
+                                   Content="{Binding Caption}"
+                                   Margin="0,3"/>
+                        </StackPanel>
+                    </Border>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+
+            <TreeView.Resources>
+                <LinearGradientBrush  x:Key="{x:Static SystemColors.HighlightBrushKey}" 
+                                      StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Offset="0" Color="#F0C89E" />
+                    <GradientStop Offset="0.19" Color="#FCC996" />
+                    <GradientStop Offset="0.39" Color="#F8B46F" />
+                    <GradientStop Offset="0.39" Color="#F79D3B" />
+                    <GradientStop Offset="0.79" Color="#FAB54B" />
+                    <GradientStop Offset="1" Color="#FED668" />
+                </LinearGradientBrush>
+            </TreeView.Resources>
+
+        </TreeView>
+    </Grid>
+</base:BaseView>

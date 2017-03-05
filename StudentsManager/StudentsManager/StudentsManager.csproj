@@ -35,21 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Eagle.Common.Infrastructure">
-      <HintPath>..\..\..\StudentsManager\StudentsManager\Libraries\Eagle.Common.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="Eagle.Common.ThemePack">
-      <HintPath>..\..\..\StudentsManager\StudentsManager\Libraries\Eagle.Common.ThemePack.dll</HintPath>
-    </Reference>
-    <Reference Include="Eagle.Common.Utils">
-      <HintPath>..\..\..\StudentsManager\StudentsManager\Libraries\Eagle.Common.Utils.dll</HintPath>
-    </Reference>
-    <Reference Include="Eagle.Core">
-      <HintPath>..\..\..\StudentsManager\StudentsManager\Libraries\Eagle.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Eagle.Windows">
-      <HintPath>..\..\..\StudentsManager\StudentsManager\Libraries\Eagle.Windows.dll</HintPath>
-    </Reference>
     <Reference Include="LocalizationInterface">
       <HintPath>..\..\..\StudentsManager\StudentsManager\Libraries\LocalizationInterface.dll</HintPath>
     </Reference>
@@ -73,6 +58,22 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Xceed.Wpf.Controls.v5.3">
       <HintPath>..\..\..\StudentsManager\StudentsManager\Libraries\Xceed.Wpf.Controls.v5.3.dll</HintPath>
     </Reference>
@@ -85,27 +86,38 @@
     <Reference Include="Xceed.Wpf.DataGrid.Views3D.v5.3">
       <HintPath>..\..\..\StudentsManager\StudentsManager\Libraries\Xceed.Wpf.DataGrid.Views3D.v5.3.dll</HintPath>
     </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AppView.xaml.cs" />
     <Compile Include="Converters\BoolToInvertedBoolConverter .cs" />
     <Compile Include="Converters\BoolToStringConverter.cs" />
     <Compile Include="Converters\ListViewWidthConverter.cs" />
     <Compile Include="Converters\NumberToStringConverter.cs" />
     <Compile Include="Converters\StudentNameSurnameConverter.cs" />
+    <Compile Include="FileNamesResources.Designer.cs" />
+    <Compile Include="Helper\ClosableTab.cs" />
+    <Compile Include="Helper\DelegateCommand.cs" />
+    <Compile Include="Helper\Extensions.cs" />
+    <Compile Include="Helper\NullItemSelectorAdapter.cs" />
+    <Compile Include="Helper\ResizingAdorner.cs" />
     <Compile Include="Helper\TreeViewHelper.cs" />
-    <Compile Include="Properties\FileNamesResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FileNamesResources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\XmlFacultiesRepository.cs" />
     <Compile Include="Repositories\XmlStudentsRepository.cs" />
     <Compile Include="Repositories\XmlUniversitiesRepository.cs" />
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\InteractionService\InteractionService.cs" />
     <Compile Include="Services\Local\FacultiesEditingService.cs" />
     <Compile Include="Services\Local\IEditingService.cs" />
     <Compile Include="Services\Local\StudentsEditingService.cs" />
@@ -114,16 +126,17 @@
     <Compile Include="Services\Serialization\XmlFacultySerialization.cs" />
     <Compile Include="Services\Serialization\XmlStudentSerialization.cs" />
     <Compile Include="Services\Serialization\XmlUniversitySerialization.cs" />
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="ViewModel\AppViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\Students\StudentsSwitchViewModel.cs" />
+    <Compile Include="ViewModel\Students\StudentsViewModel.cs" />
+    <Compile Include="ViewModel\Universitites\UniversitiesViewModel.cs" />
+    <Compile Include="View\Base\BaseView.cs" />
+    <Compile Include="View\Base\IBaseView.cs" />
+    <Compile Include="View\NewFeatures\ClosableHeader.xaml.cs" />
+    <Compile Include="View\Student\StudentsSwitchView.xaml.cs" />
+    <Compile Include="View\Student\StudentsView.xaml.cs" />
+    <Compile Include="View\University\UniversitiesView.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Faculty.cs" />
@@ -137,10 +150,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Properties\FileNamesResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>FileNamesResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -151,6 +161,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="AppView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Resources\SMResources.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -159,14 +173,66 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\NewFeatures\ClosableHeader.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Student\StudentsSwitchView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Student\StudentsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\University\UniversitiesView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="View\" />
+    <Folder Include="ViewModel\Faculty\" />
+    <Folder Include="View\Faculty\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Libraries\Xceed.Wpf.Controls.v5.3.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Add _32.png" />
+    <Resource Include="Images\Add__16.png" />
+    <Resource Include="Images\Delete_16.png" />
+    <Resource Include="Images\Delete_32.png" />
+    <Resource Include="Images\Edit_16.png" />
+    <Resource Include="Images\Edit_32.png" />
+    <Resource Include="Images\Export.png" />
+    <Resource Include="Images\Export_16.png" />
+    <Resource Include="Images\Export_32.png" />
+    <Resource Include="Images\Faculty.png" />
+    <Resource Include="Images\Faculty_16.png" />
+    <Resource Include="Images\Import.png" />
+    <Resource Include="Images\Import_16.png" />
+    <Resource Include="Images\Import_32.png" />
+    <Resource Include="Images\Refresh_16.png" />
+    <Resource Include="Images\Refresh_32.png" />
+    <Resource Include="Images\Save.png" />
+    <Resource Include="Images\Save_16.png" />
+    <Resource Include="Images\Save_32.png" />
+    <Resource Include="Images\Student.png" />
+    <Resource Include="Images\Student_16.png" />
+    <Resource Include="Images\Switch_128.png" />
+    <Resource Include="Images\Switch_16.png" />
+    <Resource Include="Images\Switch_32.png" />
+    <Resource Include="Images\University.png" />
+    <Resource Include="Images\University_16.png" />
+    <Resource Include="Images\YellowStudent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FileNamesResources.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
