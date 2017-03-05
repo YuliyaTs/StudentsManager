@@ -149,7 +149,7 @@
     <system:Int32 x:Key="DurationB">20000</system:Int32>
     <system:Int32 x:Key="DurationC">0</system:Int32>
 
-            <Style  x:Key="ToggleButtonTemplate" 
+            <!--<Style  x:Key="ToggleButtonTemplate" 
             TargetType="{x:Type rib:RibbonToggleButton}">
         <Setter Property="ClickMode" Value="Press" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
@@ -220,7 +220,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
+    </Style>-->
 
 
 </ResourceDictionary>

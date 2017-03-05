@@ -4,19 +4,11 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Input;
-using Eagle.Windows.Controls;
-using Microsoft.Windows.Controls.Ribbon;
-using StudentsManager.Annotations;
 using StudentsManager.Helper;
 using StudentsManager.Model;
 using StudentsManager.Repositories;
-using StudentsManager.Services;
 using StudentsManager.Services.Interaction;
 using StudentsManager.View;
 using StudentsManager.View.Base;
@@ -107,8 +99,8 @@ namespace StudentsManager.ViewModel
 
             SwitchViewRibbonGroupVisibility = Visibility.Hidden;
 
-            SwitchStudentViewCommand = new Eagle.Common.Infrastructure.Commands.DelegateCommand<object>(ExecuteSwitchStudentViewCommand, CanExecuteSwitchStudentViewCommand, true);
-            CloseAppCommand = new Eagle.Common.Infrastructure.Commands.DelegateCommand<object>(ExecuteCloseAppCommand, CanExecuteCloseAppCommand, true);
+            SwitchStudentViewCommand = new DelegateCommand<object>(ExecuteSwitchStudentViewCommand, CanExecuteSwitchStudentViewCommand, true);
+            CloseAppCommand = new DelegateCommand<object>(ExecuteCloseAppCommand, CanExecuteCloseAppCommand, true);
 
             SelectedView = _viewsInList.First();
         }
@@ -328,13 +320,15 @@ namespace StudentsManager.ViewModel
 
         #endregion
 
+        #region INotifyPropertyChanged implementation
+
         public event PropertyChangedEventHandler PropertyChanged;
 
-        [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        #endregion
     }
 }
