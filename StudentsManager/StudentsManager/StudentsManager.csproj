@@ -64,6 +64,10 @@
     <Compile Include="Repositories\XmlFacultiesRepository.cs" />
     <Compile Include="Repositories\XmlStudentsRepository.cs" />
     <Compile Include="Repositories\XmlUniversitiesRepository.cs" />
+    <Compile Include="Services\Local\FacultiesEditingService.cs" />
+    <Compile Include="Services\Local\IEditingService.cs" />
+    <Compile Include="Services\Local\StudentsEditingService.cs" />
+    <Compile Include="Services\Local\UniversitiesEditingService.cs" />
     <Compile Include="Services\Serialization\IXmlSerialization.cs" />
     <Compile Include="Services\Serialization\XmlFacultySerialization.cs" />
     <Compile Include="Services\Serialization\XmlStudentSerialization.cs" />
