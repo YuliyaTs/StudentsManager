@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using StudentsManager.Model;
 using StudentsManager.Services.Serialization;
 
