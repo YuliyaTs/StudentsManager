@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Universities>
+  <University Name="LNU" Caption="Lviv Ivan Franko National University" Id="d8c60978-917f-4a81-a309-87bd38ad6720" />
+  <University Name="LNPU" Caption="Lviv National Polytechnic University" Id="ebffd693-53da-4c93-a961-3f906df1f0a3" />
+  <University Name="LNMU" Caption="Lviv National Medical University" Id="93fd6951-4c4b-4ec9-8fe2-18336f7c126f" />
+  <University Name="LCA" Caption="Lviv Commercial Acadamy" Id="42638655-c070-41d4-9388-3918044fcde7" />
+</Universities>

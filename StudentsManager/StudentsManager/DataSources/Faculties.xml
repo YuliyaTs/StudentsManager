@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Faculties>
+  <Faculty Name="AMF" Caption="Faculty of Applied Mathematics and Informatics" University="LNU" Id="34111783-f50b-4718-aa71-9c834963586d" />
+  <Faculty Name="FRF" Caption="Faculty of Foreign Relations" University="LNU" Id="5d4ff3b8-24f6-4130-8417-bac40b85ec6a" />
+  <Faculty Name="JF" Caption="Faculty of Journalistics" University="LNU" Id="493f18d7-9fbc-4058-8741-091771ff88ab" />
+  <Faculty Name="EF" Caption="Faculty of Economics" University="LNU" Id="ed1ab794-af42-48e5-8cc2-cb13e23c32ac" />
+  <Faculty Name="AF" Caption="Faculty of Architecture" University="LNPU" Id="54452cf7-0c3b-4c43-969a-16577ecd6c01" />
+  <Faculty Name="CSF" Caption="Faculty of Computer Science" University="LNPU" Id="d6ab629d-af04-4ef3-a349-17a9677e8b43" />
+  <Faculty Name="PF" Caption="Faculty of Physics" University="LNPU" Id="b04751e1-cf7b-48a7-b20c-f5a14f6b24b7" />
+  <Faculty Name="MF" Caption="Medical Faculty" University="LNMU" Id="d7f6ae54-9fb8-4e70-883e-668c194792cd" />
+  <Faculty Name="PFF" Caption="Pharmacy Faculty" University="LNMU" Id="9350b231-513a-4af1-834b-a36908dd3104" />
+  <Faculty Name="DF" Caption="Dentistry Faculty" University="LNMU" Id="7f98a022-3c08-420a-ba99-17fbcd4d4bcc" />
+</Faculties>

@@ -41,7 +41,7 @@ namespace StudentsManager.Services.Serialization
         /// <returns></returns>
         public object Deserialize(string newFileName = null)
         {
-            var fileName = newFileName ?? Properties.FileNamesResources.StudentsFileName;
+            var fileName = newFileName ?? Properties.Resources.StudentsFileName;
 
             _document = XDocument.Load(fileName);
 
@@ -128,7 +128,7 @@ namespace StudentsManager.Services.Serialization
         /// <returns></returns>
         public bool Save(IList<Student> students, string newFileName = null)
         {
-            var fileName = newFileName ?? Properties.FileNamesResources.StudentsFileName;
+            var fileName = newFileName ?? Properties.Resources.StudentsFileName;
 
             _document = new XDocument();
 

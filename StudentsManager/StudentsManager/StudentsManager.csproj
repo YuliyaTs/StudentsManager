@@ -20,7 +20,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>.\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -75,7 +75,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Xceed.Wpf.Controls.v5.3">
-      <HintPath>..\..\..\StudentsManager\StudentsManager\Libraries\Xceed.Wpf.Controls.v5.3.dll</HintPath>
+      <HintPath>Libraries\Xceed.Wpf.Controls.v5.3.dll</HintPath>
     </Reference>
     <Reference Include="Xceed.Wpf.DataGrid.ThemePack.1.v5.3">
       <HintPath>..\..\..\StudentsManager\StudentsManager\Libraries\Xceed.Wpf.DataGrid.ThemePack.1.v5.3.dll</HintPath>
@@ -102,13 +102,17 @@
     <Compile Include="Converters\ListViewWidthConverter.cs" />
     <Compile Include="Converters\NumberToStringConverter.cs" />
     <Compile Include="Converters\StudentNameSurnameConverter.cs" />
-    <Compile Include="FileNamesResources.Designer.cs" />
     <Compile Include="Helper\ClosableTab.cs" />
     <Compile Include="Helper\DelegateCommand.cs" />
     <Compile Include="Helper\Extensions.cs" />
     <Compile Include="Helper\NullItemSelectorAdapter.cs" />
     <Compile Include="Helper\ResizingAdorner.cs" />
     <Compile Include="Helper\TreeViewHelper.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\XmlFacultiesRepository.cs" />
     <Compile Include="Repositories\XmlStudentsRepository.cs" />
@@ -229,10 +233,32 @@
     <Resource Include="Images\YellowStudent.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FileNamesResources.resx" />
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
+    <Resource Include="DataSources\Faculties.xml" />
+    <Resource Include="DataSources\Students.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="DataSources\Universities.xml" />
+    <Content Include="Libraries\Eagle.Common.Infrastructure.dll" />
+    <Content Include="Libraries\Eagle.Common.ThemePack.dll" />
+    <Content Include="Libraries\Eagle.Common.Utils.dll" />
+    <Content Include="Libraries\Eagle.Core.dll" />
+    <Content Include="Libraries\Eagle.Windows.dll" />
+    <Content Include="Libraries\LocalizationInterface.dll" />
+    <Content Include="Libraries\Microsoft.Windows.Shell.dll" />
+    <Content Include="Libraries\RibbonControlsLibrary.dll" />
+    <Content Include="Libraries\Xceed.Wpf.DataGrid.ThemePack.1.v5.3.dll" />
+    <Content Include="Libraries\Xceed.Wpf.DataGrid.v5.3.dll" />
+    <Content Include="Libraries\Xceed.Wpf.DataGrid.Views3D.v5.3.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Resources\FileNamesResources.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
