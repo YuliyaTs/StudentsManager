@@ -45,13 +45,28 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="Converters.Tests\BoolToInvertedBoolConverterTest.cs" />
+    <Compile Include="Converters.Tests\BoolToStringConverterTest.cs" />
+    <Compile Include="Converters.Tests\NumberToStringConverterTest.cs" />
+    <Compile Include="Converters.Tests\StudentNameSurnameConverterTest.cs" />
+    <Compile Include="Converters.Tests\ListViewWidthConverterTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StudentsManager\StudentsManager.csproj">
+      <Project>{18177533-B2CB-4142-91AB-209536CDCBA7}</Project>
+      <Name>StudentsManager</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
